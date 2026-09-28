@@ -1,0 +1,677 @@
+/* =========================================================
+   IMAGEM DO PERSONAGEM
+   ========================================================= */
+.char-image {
+    pointer-events: none;
+    z-index: 8;
+}
+
+.char-image[data-foto-personalizada="true"] {
+    background-color: transparent !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
+    background-size: contain !important;
+    filter: none !important;
+    transition: none !important;
+}
+
+/* =========================================================
+   BOTÃO DE FOTO
+   ========================================================= */
+.btn-foto-personagem {
+    --foto-btn-base: 52px;
+    --foto-btn-tamanho: var(--foto-btn-base);
+    position: absolute;
+    left: 47%;
+    top: 72%;
+    width: var(--foto-btn-tamanho);
+    height: var(--foto-btn-tamanho);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: calc((var(--foto-btn-base) - var(--foto-btn-tamanho)) / 2) 0 0
+        calc((var(--foto-btn-base) - var(--foto-btn-tamanho)) / 2);
+    box-sizing: border-box;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    color: #454545a6;
+    font-size: 200px;
+    line-height: 1;
+    opacity: 0.25;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 20;
+    transition: opacity 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-foto-personagem i {
+    pointer-events: none;
+}
+
+.btn-foto-personagem:hover,
+.btn-foto-personagem:focus-visible {
+    opacity: 0.9;
+    color: var(--main-color);
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.btn-foto-personagem:focus-visible {
+    outline: 2px solid var(--bright-color);
+    outline-offset: 2px;
+}
+
+.btn-foto-personagem:active {
+    transform: scale(0.96);
+}
+
+.btn-foto-personagem[data-tem-foto="true"] {
+    --foto-btn-tamanho: 84px;
+    opacity: 1;
+    color: transparent;
+    background: transparent;
+}
+
+.btn-foto-personagem[data-tem-foto="true"]:hover,
+.btn-foto-personagem[data-tem-foto="true"]:focus-visible {
+    color: var(--bright-color);
+    background: transparent;
+}
+
+.btn-foto-personagem[data-tem-foto="true"]:hover i,
+.btn-foto-personagem[data-tem-foto="true"]:focus-visible i {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+}
+
+/* =========================================================
+   MODAL DE FOTO
+   ========================================================= */
+body.modal-foto-aberto {
+    overflow: hidden;
+}
+
+#modal-foto-personagem {
+    --foto-xadrez: repeating-conic-gradient(#202020 0% 25%, #151515 0% 50%) 50% / 16px 16px;
+    --foto-altura-corte: max(220px, calc(min(68vh, 520px) - 200px));
+    --foto-altura-preview: var(--foto-altura-corte);
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.88);
+}
+
+#modal-foto-personagem.aberto {
+    display: flex;
+}
+
+@supports (height: 100dvh) {
+    #modal-foto-personagem {
+        --foto-altura-corte: max(220px, calc(min(68dvh, 520px) - 200px));
+    }
+}
+
+/* CONTAINER */
+#modal-foto-personagem .modal-container-foto {
+    position: relative;
+    width: min(95vw, 940px);
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    contain: layout paint;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    background: #18181b;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 24px;
+    color: var(--text-white, #fff);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-color, #444) transparent;
+}
+
+@supports (height: 100dvh) {
+    #modal-foto-personagem .modal-container-foto {
+        max-height: calc(100dvh - 64px);
+    }
+}
+
+#modal-foto-personagem.aberto .modal-container-foto {
+    animation: foto-modal-entrada 0.18s ease-out;
+}
+
+@keyframes foto-modal-entrada {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+#modal-foto-personagem .modal-header-foto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+    border-bottom: none;
+}
+
+#modal-foto-personagem .modal-header-foto h2 {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-title, sans-serif);
+    font-size: 1.25rem;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+}
+
+#modal-foto-personagem .modal-fechar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #888;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+#modal-foto-personagem .modal-fechar:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+#modal-foto-personagem .modal-fechar:focus-visible,
+#modal-foto-personagem .btn-modal:focus-visible {
+    outline: 2px solid var(--bright-color, #62904c);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   CORPO DO MODAL E PAINÉIS
+   ========================================================= */
+#modal-foto-personagem .modal-body-foto-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 16px;
+}
+
+#modal-foto-personagem .coluna-resultado {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 16px;
+    min-width: 0;
+}
+
+#modal-foto-personagem .painel-recorte,
+#modal-foto-personagem .painel-preview,
+#modal-foto-personagem .painel-especificacoes {
+    box-sizing: border-box;
+    min-width: 0;
+    background: #111113;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 16px;
+}
+
+#modal-foto-personagem .painel-titulo {
+    margin: 0 0 10px;
+    color: #eee;
+    font-family: var(--font-title, sans-serif);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   PAINEL DE CORTE
+   ========================================================= */
+#modal-foto-personagem .painel-recorte {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-foto-personagem .crop-palco {
+    position: relative;
+    height: var(--foto-altura-corte);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--foto-xadrez);
+    border-radius: 6px;
+    user-select: none;
+    contain: paint layout style;
+}
+
+#modal-foto-personagem .crop-palco:focus-visible {
+    outline: 2px solid var(--bright-color, #62904c);
+    outline-offset: -2px;
+}
+
+#modal-foto-personagem .painel-recorte[data-estado="corte"] .crop-palco {
+    cursor: grab;
+    touch-action: none;
+}
+
+#modal-foto-personagem .painel-recorte[data-estado="corte"] .crop-palco.arrastando {
+    cursor: grabbing;
+}
+
+#modal-foto-personagem .crop-mensagem {
+    max-width: 320px;
+    margin: 0;
+    padding: 20px;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#modal-foto-personagem .crop-imagem {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: var(--crop-largura, auto);
+    height: var(--crop-altura, auto);
+    max-width: none;
+    max-height: none;
+    transform: translate3d(var(--crop-x, 0px), var(--crop-y, 0px), 0);
+    transform-origin: 0 0;
+    user-select: none;
+    pointer-events: none;
+    will-change: transform;
+    transition: none !important;
+}
+
+#modal-foto-personagem .crop-janela {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: none;
+    height: calc(var(--foto-altura-corte) - 24px);
+    width: calc((var(--foto-altura-corte) - 24px) * var(--foto-razao, 0.3311));
+    box-sizing: border-box;
+    border: 2px solid var(--main-color, #62904c);
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+    background-size: 33.3333% 33.3333%;
+    outline: 9999px solid rgba(0, 0, 0, 0.75);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform;
+}
+
+#modal-foto-personagem .painel-recorte[data-estado="corte"] .crop-imagem,
+#modal-foto-personagem .painel-recorte[data-estado="corte"] .crop-janela {
+    display: block;
+}
+
+#modal-foto-personagem .painel-recorte[data-estado="corte"] .crop-mensagem {
+    display: none;
+}
+
+/* CONTROLE DE ZOOM */
+#modal-foto-personagem .crop-controles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+#modal-foto-personagem .crop-controles label {
+    color: #ccc;
+    font-family: var(--font-title, sans-serif);
+    font-size: 0.8rem;
+}
+
+#modal-foto-personagem .crop-zoom-slider {
+    flex: 1;
+    min-width: 0;
+    accent-color: var(--main-color, #62904c);
+    cursor: pointer;
+}
+
+#modal-foto-personagem .crop-zoom-slider:disabled {
+    cursor: default;
+}
+
+#modal-foto-personagem .crop-zoom-valor {
+    min-width: 48px;
+    color: #888;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+}
+
+#modal-foto-personagem .painel-recorte:not([data-estado="corte"]) .crop-controles {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+#modal-foto-personagem .painel-dica {
+    margin: 8px 0 0;
+    color: #777;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   PRÉ-VISUALIZAÇÃO ("COMO APARECERÁ NA FICHA")
+   ========================================================= */
+#modal-foto-personagem .painel-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Título e Legenda da ficha em BOLD (Negrito) */
+#modal-foto-personagem .painel-preview .painel-titulo,
+#modal-foto-personagem .preview-legenda {
+    align-self: center;
+    font-weight: 700 !important; /* Em negrito */
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+}
+
+#modal-foto-personagem .preview-ficha {
+    position: relative;
+    flex: none;
+    height: var(--foto-altura-preview);
+    width: calc(var(--foto-altura-preview) * var(--foto-razao, 0.3311));
+    overflow: hidden;
+    box-sizing: border-box;
+    background: var(--foto-xadrez);
+    border-radius: 6px;
+}
+
+#modal-foto-personagem .canvas-preview-foto {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#modal-foto-personagem .preview-ficha[data-vazio="true"] .canvas-preview-foto {
+    visibility: hidden;
+}
+
+#modal-foto-personagem .preview-vazio {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+#modal-foto-personagem .preview-ficha[data-vazio="true"] .preview-vazio {
+    display: flex;
+}
+
+/* =========================================================
+   ESPECIFICAÇÕES
+   ========================================================= */
+#modal-foto-personagem .painel-especificacoes {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-foto-personagem .lista-especificacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+}
+
+#modal-foto-personagem .especificacao {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #1e1e22;
+}
+
+#modal-foto-personagem .especificacao dt {
+    color: #666;
+    font-family: var(--font-title, sans-serif);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+#modal-foto-personagem .especificacao dd {
+    margin: 0;
+    color: #ddd;
+    font-size: 0.85rem;
+}
+
+#modal-foto-personagem .especificacoes-nota {
+    margin: auto 0 0;
+    padding-top: 10px;
+    color: #777;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+/* =========================================================
+   RODAPÉ E BOTÕES
+   ========================================================= */
+#modal-foto-personagem .modal-footer-foto {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 18px;
+    padding-top: 0;
+    border-top: none;
+}
+
+#modal-foto-personagem #input-arquivo-foto {
+    display: none;
+}
+
+#modal-foto-personagem .foto-aviso {
+    margin-right: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #ccc;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-align: left;
+    white-space: pre-line;
+}
+
+#modal-foto-personagem .foto-aviso[hidden] {
+    display: none;
+}
+
+#modal-foto-personagem .foto-aviso[data-tipo="erro"] {
+    color: #ff7b72;
+}
+
+#modal-foto-personagem .foto-aviso[data-tipo="info"] {
+    color: var(--main-color, #62904c);
+}
+
+/* BOTÕES DO MODAL */
+#modal-foto-personagem .btn-modal {
+    box-sizing: border-box;
+    min-height: 40px;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-family: var(--font-title, sans-serif);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+}
+
+#modal-foto-personagem .btn-modal:active {
+    transform: scale(0.97);
+}
+
+#modal-foto-personagem .btn-modal:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+/* BOTÃO DE ESCOLHER IMAGEM / OUTRA IMAGEM (ALINHADO À ESQUERDA) */
+#modal-foto-personagem .btn-modal-escolher,
+#modal-foto-personagem .btn-modal-arquivo,
+#modal-foto-personagem label[for="input-arquivo-foto"] {
+    margin-right: auto; /* Empurra o botão para a extrema esquerda */
+    background: transparent;
+    color: #aaa;
+    border: none;
+    padding: 9px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.15s ease;
+}
+
+#modal-foto-personagem .btn-modal-escolher:hover,
+#modal-foto-personagem .btn-modal-arquivo:hover,
+#modal-foto-personagem label[for="input-arquivo-foto"]:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+#modal-foto-personagem .btn-modal-cancelar {
+    background: transparent;
+    color: #bbb;
+    border: none;
+}
+
+#modal-foto-personagem .btn-modal-cancelar:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#modal-foto-personagem .btn-modal-adicionar {
+    background: var(--main-color);
+    color: #fff;
+    border: none;
+}
+
+#modal-foto-personagem .btn-modal-adicionar:hover {
+    filter: brightness(1.1);
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+@media (max-width: 1000px) {
+    #modal-foto-personagem {
+        --foto-altura-corte: min(45vh, 420px);
+        --foto-altura-preview: min(40vh, 380px);
+        padding: 12px;
+    }
+
+    #modal-foto-personagem .modal-container-foto {
+        width: 96vw;
+        max-height: calc(100vh - 24px);
+        padding: 16px;
+    }
+
+    #modal-foto-personagem .modal-body-foto-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@supports (height: 100dvh) {
+    @media (max-width: 1000px) {
+        #modal-foto-personagem {
+            --foto-altura-corte: min(45dvh, 420px);
+            --foto-altura-preview: min(40dvh, 380px);
+        }
+        #modal-foto-personagem .modal-container-foto {
+            max-height: calc(100dvh - 24px);
+        }
+    }
+}
+
+@media (max-width: 620px) {
+    #modal-foto-personagem {
+        --foto-altura-preview: min(38vh, 320px);
+    }
+
+    #modal-foto-personagem .coluna-resultado {
+        grid-template-columns: 1fr;
+    }
+
+    #modal-foto-personagem .modal-footer-foto {
+        flex-wrap: wrap;
+    }
+
+    #modal-foto-personagem .btn-modal-escolher,
+    #modal-foto-personagem label[for="input-arquivo-foto"] {
+        margin-right: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    #modal-foto-personagem .foto-aviso {
+        order: -1;
+        flex-basis: 100%;
+    }
+
+    #modal-foto-personagem .btn-modal {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-foto-personagem {
+        --foto-btn-base: 48px;
+        font-size: 26px;
+    }
+
+    .btn-foto-personagem[data-tem-foto="true"] {
+        --foto-btn-tamanho: 76px;
+    }
+
+    #modal-foto-personagem .modal-header-foto h2 {
+        font-size: 1.1rem;
+    }
+
+    #modal-foto-personagem .modal-footer-foto {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #modal-foto-personagem .btn-modal {
+        width: 100%;
+    }
+}
