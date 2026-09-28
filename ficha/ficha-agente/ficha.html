@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDEM PARANORMAL RPG II - FICHA</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS dos Módulos -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="edicao.css">
+    <link rel="stylesheet" href="../dado/dado.css">
+    <link rel="stylesheet" href="../habilidade/habilidade.css">
+    <link rel="stylesheet" href="../ficha-agente/ficha-ajustes.css">
+    <link rel="stylesheet" href="../foto/foto-personagem.css">
+</head>
+<body>
+
+<div class="ficha-wrapper">
+
+    <!-- Botões de Ação do Topo -->
+<div class="topo-acoes">
+    <button id="btn-voltar-painel" title="Voltar"><i class="fa-solid fa-arrow-left"></i></button>
+    <button id="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></button>
+    <button id="btn-historico" title="Histórico"><i class="fa-solid fa-history"></i></button>
+</div>
+
+    <div class="moldura-borda-externa"></div>
+    <div class="moldura-borda-interna"></div>
+    <div class="linha-decorativa-top"></div>
+
+    <div class="char-name-container">
+        <div class="char-name" contenteditable="true">NOME</div>
+    </div>
+
+    <!-- foto -->
+    <div class="char-image"></div>
+
+<button
+    id="btn-foto-personagem"
+    class="btn-foto-personagem"
+    type="button"
+    aria-label="Adicionar foto do personagem">
+    +
+</button>
+
+    <div class="top-bar-direita">
+        <div class="select-wrapper">
+            <select id="classe-dropdown" class="btn-classe bg-verde">
+                <option value="vigilante" selected>VIGILANTE</option>
+                <option value="analista">ANALISTA</option>
+                <option value="executor">EXECUTOR</option>
+            </select>
+        </div>
+        <span class="dot">•</span>
+        <button class="btn-medico" contenteditable="true">OCUPAÇÃO</button>
+        <span class="dot">•</span>
+        <span class="txt-nivel">NÍVEL</span>
+        <select class="caixa-nivel" id="nivel-dropdown">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+
+    <div class="linha-topo-decorativa"></div>
+
+    <!-- Atributos Mínimos Base (d6) -->
+    <div class="atributos-wrapper">
+        <div class="tag-fundo tag-atributos">ATRIBUTOS</div>
+        <div class="linha-diag-1"></div>
+        <div class="linha-diag-2"></div>
+    </div>
+    
+    <div class="attr-box attr-fisico">
+        <span class="attr-nome">FÍSICO</span>
+        <button class="dado-shape d6 attr-dado">6</button>
+    </div>
+    
+    <div class="attr-box attr-mente">
+        <span class="attr-nome">MENTE</span>
+        <button class="dado-shape d6 attr-dado">6</button>
+    </div>
+    
+    <div class="attr-box attr-emocao">
+        <span class="attr-nome">EMOÇÃO</span>
+        <button class="dado-shape d6 attr-dado">6</button>
+    </div>
+
+    <!-- Perícias -->
+    <div class="tag-fundo tag-pericias">PERÍCIAS</div>
+    <div class="linha-pericias-decorativa"></div>   
+    
+    <div class="pericias-container">
+        <div class="peri-linha">
+            <span class="peri-nome">ACROBACIA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">APTIDÃO: 
+                <select class="peri-subselect">
+                    <option value="artes">ARTES</option>
+                    <option value="atualidades">ATUALIDADES</option>
+                    <option value="burocracia">BUROCRACIA</option>
+                    <option value="exatas" selected>EXATAS</option>
+                    <option value="humanas">HUMANAS</option>
+                    <option value="tatica">TÁTICA</option>
+                </select>
+            </span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">ATLETISMO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">CRIME</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">DISCIPLINA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">ENGANAÇÃO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">FURTIVIDADE</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">INTIMIDAR</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">INTUIÇÃO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">LUTA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">MÁQUISNAS</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">MEDICINA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">OCULTISMO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">PERCEPÇÃO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">PERSUASÃO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">PESQUISAR</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">PONTARIA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">SOBREVIVÊNCIA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">TECNOLOGIA</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">VIGOR</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="fisico">
+                <option value="fisico" selected>FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Coluna Direita -->
+    <div class="coluna-direita">
+        <div class="status-group">
+            <div class="status-box box-pv">
+                <div class="status-header">
+                    <div class="status-label tag-pv">PV</div>
+                    <span class="status-num" contenteditable="true" id="val-pv">0</span>
+                </div>
+                <div class="grid-quadrados" id="grid-pv"></div>
+            </div>
+
+            <div class="status-box box-pd">
+                <div class="status-header">
+                    <div class="status-label tag-pd">PD</div>
+                    <span class="status-num" contenteditable="true" id="val-pd">0</span>
+                </div>
+                <div class="grid-quadrados" id="grid-pd"></div>
+            </div>
+        </div>
+
+        <div class="cabecalho-habilidades">
+            <h3>HABILIDADES</h3>
+            <button id="btn-adicionar-habilidade" class="btn-adicionar" aria-label="Adicionar habilidade">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+
+        <div class="hab-wrapper" id="lista-habilidades"></div>
+    </div>
+
+</div>
+
+<!-- Painel Lateral do Histórico -->
+<div id="modal-historico" class="drawer-historico-overlay hidden">
+    <div class="drawer-historico-conteudo">
+        <div class="drawer-historico-header">
+            <div>
+                <h3>Resultados</h3>
+            </div>
+            <button id="btn-fechar-historico" class="btn-fechar-modal">&times;</button>
+        </div>
+        <div id="lista-historico-rolagens" class="lista-historico">
+        </div>
+    </div>
+</div>
+
+
+<!-- foto modal-->
+<div
+    id="modal-foto-personagem"
+    class="modal-foto-overlay"
+    style="display: none;"
+>
+    <div class="modal-container-foto">
+
+        <div class="modal-header">
+            <h2>Ajustar Foto do Personagem</h2>
+
+            <button
+                id="fechar-modal-foto"
+                class="modal-fechar"
+                type="button"
+            >
+                &times;
+            </button>
+        </div>
+
+        <div class="modal-body-foto-layout">
+
+            <div class="painel-preview">
+                <h3>Pré-visualização</h3>
+
+                <div id="preview-resultado">
+                    <span>Sem imagem</span>
+                </div>
+
+                <span class="preview-hint">
+                    Como aparecerá na ficha
+                </span>
+            </div>
+
+            <div class="painel-recorte">
+
+                <div id="crop-image-container">
+                    <p>
+                        Escolha uma imagem PNG de corpo inteiro
+                        com fundo transparente.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+
+            <input
+                type="file"
+                id="input-arquivo-foto"
+                accept=".png,image/png"
+            >
+
+            <button
+                id="btn-escolher-outra"
+                class="btn-modal btn-modal-cancelar"
+                type="button"
+            >
+                Escolher outra imagem
+            </button>
+
+            <button
+                id="btn-confirmar-foto"
+                class="btn-modal btn-modal-adicionar"
+                type="button"
+            >
+                Confirmar
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Scripts dos Módulos -->
+<script src="script.js"></script>
+<script src="edicao.js"></script>
+<script src="../dado/dado.js"></script>
+<script src="../habilidade/habilidade.js"></script>
+<script type="module" src="ficha.js"></script>
+<script src="../foto/foto-personagem.js"></script>
+</body>
+</html>
