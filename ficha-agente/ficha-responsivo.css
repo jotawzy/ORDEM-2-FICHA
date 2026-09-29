@@ -1,0 +1,568 @@
+html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* navegação abas */
+.nav-abas {
+    display: none;
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+
+    html body {
+        padding: 12px 0 !important;
+    }
+
+    html body .ficha-wrapper {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        grid-template-areas: none !important;
+        align-content: start;
+        gap: 18px 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: calc(100vh - 24px) !important;
+        height: auto !important;
+        padding: 28px 30px 110px !important;
+    }
+
+    html body .ficha-wrapper > * {
+        min-width: 0;
+    }
+
+    /* itens largura total */
+    html body .ficha-wrapper .topo-acoes,
+    html body .ficha-wrapper .char-name-container,
+    html body .ficha-wrapper .top-bar-direita,
+    html body .ficha-wrapper .linha-topo-decorativa,
+    html body .ficha-wrapper .atributos-wrapper,
+    html body .ficha-wrapper .tag-pericias,
+    html body .ficha-wrapper .linha-pericias-decorativa,
+    html body .ficha-wrapper .pericias-container,
+    html body .ficha-wrapper .status-group,
+    html body .ficha-wrapper .cabecalho-habilidades,
+    html body .ficha-wrapper .hab-wrapper {
+        grid-column: 1 / -1;
+    }
+
+    /* foto oculta */
+    html body .ficha-wrapper .char-image,
+    html body .ficha-wrapper .btn-foto-personagem {
+        display: none !important;
+    }
+
+    /* remover moldura no celular */
+    html body .ficha-wrapper .moldura-borda-externa,
+    html body .ficha-wrapper .moldura-borda-interna {
+        display: none !important;
+    }
+
+    html body .ficha-wrapper .linha-decorativa-top {
+        display: none !important;
+    }
+
+    /* botões topo */
+    html body .ficha-wrapper > .topo-acoes {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        justify-self: start;
+    }
+
+    /* nome */
+    html body .ficha-wrapper .char-name-container {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    html body .ficha-wrapper .char-name {
+        font-size: clamp(53px, 8.4vw, 77px);
+        text-align: left;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: anywhere;
+    }
+
+    /* classe ocupação nível */
+    html body .ficha-wrapper .top-bar-direita {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        transform: none !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 16px !important;
+    }
+
+    html body .ficha-wrapper .linha-topo-decorativa {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 100%;
+    }
+
+    /* atributos */
+    html body .ficha-wrapper .atributos-wrapper {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    html body .ficha-wrapper .tag-atributos {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+    }
+
+    html body .ficha-wrapper .linha-diag-1,
+    html body .ficha-wrapper .linha-diag-2 {
+        display: none !important;
+    }
+
+    html body .ficha-wrapper .attr-box {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        min-height: 92px;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--externa-color);
+        border-left: 4px solid var(--main-color);
+    }
+
+    html body .ficha-wrapper .attr-nome {
+        font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+    }
+
+    html body .ficha-wrapper .attr-box .attr-dado {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.5rem !important;
+    }
+
+    /* vida e pd */
+    html body .ficha-wrapper .coluna-direita {
+        display: contents !important;
+    }
+
+    html body .ficha-wrapper .status-group {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px !important;
+        width: 100%;
+    }
+
+    html body .ficha-wrapper .status-box {
+        width: 100% !important;
+        gap: 10px;
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--externa-color);
+    }
+
+    html body .ficha-wrapper .grid-quadrados {
+        gap: 7px !important;
+    }
+
+    html body .ficha-wrapper .grid-quadrados .cb {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* perícias */
+    html body .ficha-wrapper .tag-pericias {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        justify-self: start;
+    }
+
+    html body .ficha-wrapper .linha-pericias-decorativa {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100%;
+        margin-top: -10px;
+        transform: none !important;
+    }
+
+    html body .ficha-wrapper .pericias-container {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 16px !important;
+        width: 100%;
+    }
+
+    html body .ficha-wrapper .peri-linha {
+        width: 100% !important;
+        min-height: 54px !important;
+        grid-template-columns: minmax(0, 1fr) 36px 14px 36px 86px;
+        column-gap: 6px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border-left: 3px solid var(--main-color);
+    }
+
+    html body .ficha-wrapper .peri-nome {
+        justify-self: start;
+        text-align: left;
+        margin-right: 0;
+        font-size: 14px;
+    }
+
+    html body .ficha-wrapper .peri-linha .dado-shape {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    html body .ficha-wrapper .peri-attr-select {
+        margin-left: 0 !important;
+        width: 100%;
+        font-size: 13px;
+    }
+
+    /* habilidades */
+    html body .ficha-wrapper .cabecalho-habilidades {
+        margin-top: 0 !important;
+    }
+
+    html body .ficha-wrapper #btn-adicionar-habilidade {
+        top: 0 !important;
+        right: 0 !important;
+    }
+
+    html body .ficha-wrapper .hab-wrapper {
+        gap: 30px !important;
+        width: 100%;
+    }
+
+    /* aba principal */
+    html body .ficha-wrapper:not([data-aba="principal"]) .char-name-container,
+    html body .ficha-wrapper:not([data-aba="principal"]) .top-bar-direita,
+    html body .ficha-wrapper:not([data-aba="principal"]) .linha-topo-decorativa,
+    html body .ficha-wrapper:not([data-aba="principal"]) .atributos-wrapper,
+    html body .ficha-wrapper:not([data-aba="principal"]) .attr-box,
+    html body .ficha-wrapper:not([data-aba="principal"]) .status-group {
+        display: none !important;
+    }
+
+    /* aba perícias */
+    html body .ficha-wrapper:not([data-aba="pericias"]) .tag-pericias,
+    html body .ficha-wrapper:not([data-aba="pericias"]) .linha-pericias-decorativa,
+    html body .ficha-wrapper:not([data-aba="pericias"]) .pericias-container {
+        display: none !important;
+    }
+
+    /* aba habilidades */
+    html body .ficha-wrapper:not([data-aba="habilidades"]) .cabecalho-habilidades,
+    html body .ficha-wrapper:not([data-aba="habilidades"]) .hab-wrapper {
+        display: none !important;
+    }
+
+    /* botão flutuante */
+    html body .nav-abas {
+        display: block;
+        position: fixed;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+        z-index: 900;
+        font-family: var(--font-title);
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
+    }
+
+    html body .nav-abas-toggle {
+        width: 58px !important;
+        height: 58px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        border: none !important;
+        outline: none;
+        cursor: pointer;
+        background: var(--main-color) !important;
+        clip-path: polygon(3% 2%, 22% 5%, 45% 1%, 72% 4%, 95% 2%, 98% 25%, 95% 50%, 99% 75%, 96% 95%, 70% 98%, 40% 95%, 15% 99%, 2% 96%, 0% 70%, 4% 40%, 1% 20%);
+    }
+
+    html body .nav-abas-icone {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background: #fff;
+        box-shadow: 0 -8px 0 #fff, 0 8px 0 #fff;
+    }
+
+    html body .nav-abas-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        bottom: 70px;
+        min-width: 200px;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px;
+        background: #0a0c0a;
+        border: 1px solid var(--externa-color);
+        border-left: 4px solid var(--main-color);
+    }
+
+    html body .nav-abas-menu.aberto {
+        display: flex;
+    }
+
+    html body .nav-abas-item {
+        width: 100%;
+        margin: 0;
+        padding: 12px 14px;
+        border: none;
+        border-left: 3px solid transparent;
+        outline: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: var(--font-title);
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    html body .nav-abas-item.atual {
+        background: var(--main-color);
+        border-left-color: var(--bright-color);
+    }
+
+    html body:has(#modal-historico:not(.hidden)) .nav-abas {
+        display: none;
+    }
+
+    /* modais */
+    html body .drawer-historico-conteudo {
+        max-width: 100vw;
+    }
+}
+
+/* celular */
+@media (max-width: 768px) {
+
+    html body {
+        padding: 6px 0 !important;
+    }
+
+    html body .ficha-wrapper {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 14px !important;
+        padding: 22px 18px 100px !important;
+    }
+
+    html body .ficha-wrapper .char-name {
+        font-size: clamp(32px, 10.5vw, 48px);
+    }
+
+    /* classe ocupação nível */
+    html body .ficha-wrapper .top-bar-direita {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "cl nt"
+        "oc nv";
+    align-items: center;
+    gap: 6px 18px !important;
+}
+
+html body .ficha-wrapper .top-bar-direita .select-wrapper {
+    grid-area: cl;
+    justify-self: start;
+}
+
+html body .ficha-wrapper .top-bar-direita .btn-medico {
+    grid-area: oc;
+    justify-self: start;
+    text-align: left;
+    font-size: 1.05rem;
+}
+
+html body .ficha-wrapper .top-bar-direita .txt-nivel {
+    grid-area: nt;
+    justify-self: center;
+    align-self: end;
+    margin-bottom: -2px;
+    font-size: 0.78rem;
+    line-height: 1;
+    transform: translateY(-8px);
+}
+
+html body .ficha-wrapper .top-bar-direita .caixa-nivel {
+    grid-area: nv;
+    justify-self: center;
+    align-self: start;
+    transform: translateY(-8px);
+}
+
+html body .ficha-wrapper .top-bar-direita .dot {
+    display: none;
+}
+
+    /* atributos */
+    html body .ficha-wrapper .tag-fundo {
+        font-size: 1.15rem;
+        padding: 5px 16px;
+    }
+
+    html body .ficha-wrapper .tag-atributos {
+        min-width: 0;
+        padding: 6px 18px;
+    }
+
+    html body .ficha-wrapper .attr-box {
+        min-height: 76px;
+        padding: 8px 14px;
+        gap: 8px;
+    }
+
+    html body .ficha-wrapper .attr-nome {
+        font-size: clamp(1.15rem, 5vw, 1.5rem);
+    }
+
+    html body .ficha-wrapper .attr-box .attr-dado {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.35rem !important;
+    }
+
+    /* vida e pd */
+    html body .ficha-wrapper .status-group {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px !important;
+    }
+
+    html body .ficha-wrapper .status-box {
+        padding: 12px 14px;
+    }
+
+    html body .ficha-wrapper .grid-quadrados .cb {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* perícias */
+    html body .ficha-wrapper .pericias-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px !important;
+    }
+
+    html body .ficha-wrapper .peri-linha {
+        min-height: 52px !important;
+        grid-template-columns: minmax(0, 1fr) 34px 12px 34px 78px;
+        column-gap: 5px;
+        padding: 6px 10px;
+    }
+
+    html body .ficha-wrapper .peri-nome {
+        font-size: 13px;
+    }
+
+    /* habilidades */
+    html body .ficha-wrapper .hab-wrapper {
+        gap: 26px !important;
+    }
+
+    html body .ficha-wrapper .hab-texto {
+        font-size: 0.98rem !important;
+    }
+}
+
+/* celular pequeno */
+@media (max-width: 400px) {
+
+    html body .ficha-wrapper {
+        padding: 20px 14px 100px !important;
+    }
+
+    html body .ficha-wrapper .attr-box {
+        padding: 8px 10px;
+    }
+
+    html body .ficha-wrapper .peri-linha {
+        grid-template-columns: minmax(0, 1fr) 32px 10px 32px 72px;
+        column-gap: 4px;
+        padding: 6px 8px;
+    }
+
+    html body .ficha-wrapper .peri-linha .dado-shape {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+   @media (max-width: 720px) {
+    /* Container do Nível: Transforma em coluna e centraliza */
+    .card-agente .nivel-card {
+        position: absolute !important;
+        right: 15px !important;
+        bottom: 15px !important;
+        
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Alinha tudo ao centro */
+        justify-content: center !important;
+        
+        width: max-content !important; /* Impede que a div estique e cause desalinhamento */
+        z-index: 10 !important;
+    }
+
+    /* O Quadrado com o número */
+    .card-agente .nivel-card div {
+        position: relative !important;
+        inset: auto !important; /* Limpa right/left/top/bottom absolutos antigos */
+        order: 1 !important; /* Força a ficar em cima */
+        margin: 0 !important;
+    }
+
+    /* O Texto "NÍVEL" */
+    .card-agente .nivel-card span {
+        position: relative !important;
+        inset: auto !important;
+        order: 2 !important; /* Força a ficar embaixo do quadrado */
+        margin: 4px 0 0 0 !important; /* Espaçamento apenas em cima para afastar do quadrado */
+        text-align: center !important;
+        width: 100% !important; /* Garante que o texto se centralize com o quadrado */
+    }
+
+    /* Regra de segurança: Anula aquele seletor complexo que vimos na imagem anterior */
+    .card-agente > div:nth-child(2) > div:last-child > div {
+        position: relative !important;
+        right: auto !important;
+        bottom: auto !important;
+    }
+}
