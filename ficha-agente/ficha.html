@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="../habilidade/habilidade.css">
     <link rel="stylesheet" href="../ficha-agente/ficha-ajustes.css">
     <link rel="stylesheet" href="../foto/foto-personagem.css">
+    <link rel="stylesheet" href="../ficha-agente/inventario.css">
 
     <!-- Celular -->
      <link rel="stylesheet" href="ficha-responsivo.css">
@@ -117,6 +118,17 @@
             </select>
         </div>
         <div class="peri-linha">
+            <span class="peri-nome">ANIMAIS</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="emocao">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente">MENTE</option>
+                <option value="emocao" selected>EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
             <span class="peri-nome">APTIDÃO: 
                 <select class="peri-subselect">
                     <option value="artes">ARTES</option>
@@ -192,6 +204,17 @@
             </select>
         </div>
         <div class="peri-linha">
+            <span class="peri-nome">INSPECIONAR</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
             <span class="peri-nome">INTIMIDAR</span>
             <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
             <span class="peri-plus">+</span>
@@ -225,17 +248,6 @@
             </select>
         </div>
         <div class="peri-linha">
-            <span class="peri-nome">MÁQUINAS</span>
-            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
-            <span class="peri-plus">+</span>
-            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
-            <select class="peri-attr-select" data-attr-padrao="mente">
-                <option value="fisico">FÍSICO</option>
-                <option value="mente" selected>MENTE</option>
-                <option value="emocao">EMOÇÃO</option>
-            </select>
-        </div>
-        <div class="peri-linha">
             <span class="peri-nome">MEDICINA</span>
             <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
             <span class="peri-plus">+</span>
@@ -248,6 +260,17 @@
         </div>
         <div class="peri-linha">
             <span class="peri-nome">OCULTISMO</span>
+            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
+            <span class="peri-plus">+</span>
+            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
+            <select class="peri-attr-select" data-attr-padrao="mente">
+                <option value="fisico">FÍSICO</option>
+                <option value="mente" selected>MENTE</option>
+                <option value="emocao">EMOÇÃO</option>
+            </select>
+        </div>
+        <div class="peri-linha">
+            <span class="peri-nome">OFÍCIO</span>
             <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
             <span class="peri-plus">+</span>
             <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
@@ -277,17 +300,6 @@
                 <option value="fisico">FÍSICO</option>
                 <option value="mente">MENTE</option>
                 <option value="emocao" selected>EMOÇÃO</option>
-            </select>
-        </div>
-        <div class="peri-linha">
-            <span class="peri-nome">PESQUISAR</span>
-            <button class="peri-dado-1 dado-shape d4 dado-1" data-val="4">4</button>
-            <span class="peri-plus">+</span>
-            <button class="peri-dado-2 dado-shape d6 dado-2" data-val="6">6</button>
-            <select class="peri-attr-select" data-attr-padrao="mente">
-                <option value="fisico">FÍSICO</option>
-                <option value="mente" selected>MENTE</option>
-                <option value="emocao">EMOÇÃO</option>
             </select>
         </div>
         <div class="peri-linha">
@@ -336,6 +348,8 @@
         </div>
     </div>
 
+    <div class="linha-topo-decorativa-2"></div>
+
     <!-- Coluna Direita -->
     <div class="coluna-direita">
         <div class="status-group">
@@ -366,7 +380,99 @@
         <div class="hab-wrapper" id="lista-habilidades"></div>
     </div>
 
+    <!-- Seção do Inventário -->
+<div class="inventario-wrapper">
+    <div class="inventario-header-wrapper">
+        <div class="inventario-header-left">
+            <div class="tag-fundo tag-inventario">INVENTÁRIO</div>
+            <div class="linha-inventario-tag"></div>
+        </div>
+        <div class="inventario-contador">
+            <span id="peso-atual" class="span-peso-atual">0</span> / <input type="number" id="peso-maximo" value="20" class="input-peso-max">
+            <button id="btn-abrir-modal-item" class="btn-add-item">+</button>
+        </div>
+    </div>
+
+    <!-- Lista onde os itens serão injetados via JavaScript -->
+    <div id="lista-inventario" class="inventario-lista-container">
+        <!-- Os itens aparecem aqui dinamicamente -->
+    </div>
 </div>
+
+<!-- Modal para Adicionar Novo Item -->
+<div id="modal-add-item" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2>ADICIONAR ITEM</h2>
+            <button id="modal-item-fechar" class="modal-fechar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-group">
+                <label>Nome do Item</label>
+                <input type="text" id="input-item-nome" class="modal-input" placeholder="Ex: Binóculos">
+            </div>
+            <div class="modal-group" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label>Categoria</label>
+                    <input type="number" id="input-item-categoria" class="modal-input" value="0">
+                </div>
+                <div style="flex: 1;">
+                    <label>Espaços</label>
+                    <input type="number" id="input-item-espacos" class="modal-input" value="1">
+                </div>
+            </div>
+
+            
+ <!-- Dentro do modal-body do seu modal de adicionar/editar item -->
+<!-- Exemplo do bloco de foto dentro do modal de adicionar item -->
+<div class="modal-group">
+    <label>Foto do Item (500x500px)</label>
+    <div style="display: flex; align-items: center; gap: 15px; margin-top: 5px;">
+        <div id="preview-foto-item-container" style="width: 60px; height: 60px; border: 1px dashed #3f3f46; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #09090b; overflow: hidden; cursor: pointer;">
+            <span style="font-size: 11px; color: #71717a;">Sem foto</span>
+        </div>
+        <button type="button" id="btn-abrir-corte-foto-item" class="modal-input" style="width: auto; padding: 8px 16px; background: #27272a; border: 1px solid #3f3f46; cursor: pointer; color: #fff; border-radius: 6px;">Escolher/Ajustar Foto</button>
+    </div>
+</div>
+
+<!-- Modal auxiliar de Corte de Foto do Item (Cole junto aos outros modais da página) -->
+<div id="modal-cortar-foto-item" class="modal-overlay" style="display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 99999; align-items: center; justify-content: center;">
+    <div class="modal-container-foto-item" style="width: min(450px, 92vw); background: #181818; border: 1px solid var(--main-color, #a8321d); border-radius: 12px; padding: 20px; color: #fff;">
+        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 style="font-size: 16px; font-family: var(--font-title);">Ajustar Foto do Item (500x500)</h2>
+            <button type="button" id="fechar-modal-corte-item" style="background:none; border:none; color:#fff; font-size:22px; cursor:pointer;">&times;</button>
+        </div>
+        <div style="text-align: center;">
+            <div id="crop-container-item" style="position: relative; width: 300px; height: 300px; overflow: hidden; margin: 0 auto; background: #000; border: 1px solid #555; border-radius: 6px; cursor: grab; touch-action: none;"></div>
+            <div style="margin-top: 12px; display: flex; align-items: center; gap: 10px; justify-content: center;">
+                <span style="font-size: 13px;">Zoom</span>
+                <input type="range" id="crop-zoom-slider-item" min="0" max="100" value="0" style="width: 200px;">
+            </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+            <button type="button" id="btn-cancelar-corte-item" style="padding: 8px 16px; background: transparent; border: 1px solid #3f3f46; color: #fff; border-radius: 6px; cursor: pointer;">Cancelar</button>
+            <button type="button" id="btn-confirmar-corte-item" style="padding: 8px 16px; background: var(--main-color, #a8321d); border: none; color: #fff; font-weight: bold; border-radius: 6px; cursor: pointer;">Confirmar</button>
+        </div>
+    </div>
+</div>
+
+            <div class="modal-group">
+                <label>Classificação  <span class="modal-label-hint">(Opcional)</span></label>
+                <input type="text" id="input-item-sub" class="modal-input" placeholder="Ex: Itens Operacionais">
+            </div>
+            <div class="modal-group">
+                <label>Descrição</label>
+                <textarea id="input-item-desc" class="modal-input" style="min-height: 80px; resize: vertical;" placeholder="Detalhes e efeitos do item..."></textarea>
+            </div>
+            <button id="btn-salvar-item" class="modal-input">Salvar Item</button>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
 
 <!-- Navegação das abas -->
 <nav id="nav-abas" class="nav-abas" aria-label="Abas da ficha">
@@ -471,6 +577,21 @@
     </div>
 </div>
 
+<!-- Modal de Informações da Perícia -->
+<div id="modal-pericia" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h2 id="modal-pericia-titulo">NOME DA PERÍCIA</h2>
+            <button id="modal-pericia-fechar" class="modal-fechar">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p id="modal-pericia-desc"></p>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- Scripts dos Módulos -->
 <script src="script.js"></script>
 <script src="edicao.js"></script>
@@ -479,5 +600,7 @@
 <script type="module" src="ficha.js"></script>
 <script src="../foto/foto-personagem.js"></script>
 <script src="ficha-abas.js"></script>
+<script type="module" src="inventario.js"></script>
+<script type="module" src="../foto/foto-inventario.js"></script>
 </body>
 </html>

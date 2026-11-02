@@ -178,3 +178,62 @@ function atualizarPericiasDoAtributo(tipoAttr) {
         }
     });
 }
+
+const descricoesPericias = {
+    "ACROBACIA": "Movimentos de ginástica e parkour, andar de skate ou patins. <em>Físico</em>",
+    "ANIMAIS": "Manejar animais, acalmar feras agressivas, cavalgar. <em>Emoção</em>",
+    "APTIDÃO": `Conhecimento em um campo específico (veja a seguir). <em>Mente</em><br><br>• <strong>ARTES.</strong> Formas de arte, como música, dança, escrita, pintura, atuação e outras.<br>• <strong>ERUDIÇÃO.</strong> Conhecimento formal, como aritmética, geometria e astronomia — é a aptidão que um estudioso teria. Um personagem com d6 ou mais nesta Aptidão é alfabetizado. Caso contrário, é analfabeto.<br>• <strong>FOLCLORE.</strong> Costumes, tradições e lendas populares, ciclos da vida.<br>• <strong>GUERRA.</strong> Educação militar e estratégica.<br>• <strong>NOBREZA.</strong> Etiqueta, leis, heráldica, linhagens.<br>• <strong>RELIGIÃO.</strong> Deuses, mitos, profecias, cerimônias.`,
+    "ATLETISMO": "Correr, saltar, escalar, nadar, remar. <em>Físico</em>",
+    "CRIME": "Furtar objetos, abrir fechaduras, falsificar documentos. <em>Físico</em>",
+    "DISCIPLINA": "Estudar, meditar, resistir a traumas e sustos. <em>Emoção</em>",
+    "ENGANAÇÃO": "Mentir, disfarçar-se, seduzir. <em>Emoção</em>",
+    "FURTIVIDADE": "Esconder-se, andar sem ser visto ou ouvido. <em>Físico</em>",
+    "INTIMIDAR": "Assustar pessoas, coagi-las a fazerem o que você quer. <em>Emoção</em>",
+    "INTUIÇÃO": "\"Sexto sentido\" para analisar pessoas e ambientes. <em>Emoção</em>",
+    "INSPECIONAR": "Pesquisar documentos e bancos de dados, analisar evidências. <em>Mente</em>",
+    "LUTA": "Atacar desarmado ou com armas corpo a corpo. <em>Físico</em>",
+    "MEDICINA": "Primeiros socorros, tratamentos. <em>Mente</em>",
+    "OFICIO": "Fabricar e consertar itens. <em>Mente</em>",
+    "OCULTISMO": "Conhecimento sobre o paranormal. <em>Mente</em>",
+    "PERCEPÇÃO": "Notar coisas através de visão, audição e olfato, revistar lugares. <em>Mente</em>",
+    "PERSUASÃO": "Convencer pessoas com argumentos e lábia. <em>Emoção</em>",
+    "PONTARIA": "Atirar com armas de arremesso ou de disparo. <em>Físico</em>",
+    "SOBREVIVÊNCIA": "Montar acampamento, rastrear, acalmar animais ferozes. <em>Mente</em>",
+    "VIGOR": "Manter o fôlego, resistir a venenos, suportar ferimentos. <em>Físico</em>"
+};
+
+const modal = document.getElementById('modal-pericia');
+const modalTitulo = document.getElementById('modal-pericia-titulo');
+const modalDesc = document.getElementById('modal-pericia-desc');
+const modalFechar = document.getElementById('modal-pericia-fechar');
+
+document.querySelectorAll('.peri-linha').forEach(linha => {
+    const spanNome = linha.querySelector('.peri-nome');
+    if (spanNome) {
+        spanNome.style.cursor = 'default';
+        
+        spanNome.addEventListener('click', (e) => {
+            if (e.target.tagName === 'SELECT' || e.target.tagName === 'OPTION') return;
+
+            let nomePericia = spanNome.textContent.replace(':', '').trim().toUpperCase();
+            // Remove quebras de linha caso venham do HTML estruturado
+            nomePericia = nomePericia.split('\n')[0].trim();
+
+            if (modalTitulo) modalTitulo.textContent = nomePericia;
+            if (modalDesc) modalDesc.innerHTML = descricoesPericias[nomePericia] || "Descrição indisponível.";
+            if (modal) modal.classList.add('ativo');
+        });
+    }
+});
+
+if (modalFechar) {
+    modalFechar.addEventListener('click', () => {
+        modal.classList.remove('ativo');
+    });
+}
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('ativo');
+    }
+});

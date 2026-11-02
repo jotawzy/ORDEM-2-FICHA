@@ -39,16 +39,22 @@
 
 * { box-sizing: border-box; }
 
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     background-color: var(--bg-dark);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
+    height: 100%; 
+    overflow-y: auto; 
+    overflow-x: hidden;
     margin: 0;
     padding: 20px 0;
     font-family: var(--font-body);
-    overflow-x: hidden;
 }
 
 /* Padrão inicial */
@@ -109,9 +115,8 @@ body.vigilante {
     border: 4px solid var(--externa-color); 
     pointer-events: none; 
     z-index: 10;
+    height: 300%;
 }
-
-
 
 .moldura-borda-interna {
     position: absolute; 
@@ -122,6 +127,7 @@ body.vigilante {
     border: 1px solid var(--interna-color); 
     pointer-events: none; 
     z-index: 10;
+    height: 298.78%;
 }
 
 [contenteditable="true"] { 
@@ -192,16 +198,23 @@ body.vigilante {
     transform-origin: right center;
 }
 .btn-classe {
+    position: relative;
     font-family: var(--font-title); 
     font-size: 1.2rem; 
     color: #fff;
-    padding: 4px 18px; 
-    border: none; outline: none; 
+    padding:8.8px 28px !important; 
+    border: none; 
+    outline: none; 
     cursor: pointer; 
     font-weight: bold;
     appearance: none; 
     -webkit-appearance: none;
-    clip-path: polygon(0% 0%, 100% 2%, 95% 98%, 3% 95%);
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    clip-path: polygon(100% 0%, 98% 93%, 3% 94%, 0% 67%, 3% 60%, 0% 49%, 4% 8%, 51% 8%, 46% -1%);
 }
 
 .bg-verde { background-color: var(--cor-vigilante); }
@@ -337,9 +350,7 @@ body.vigilante {
     background: linear-gradient(to right, var(--main-color) 70%, transparent 100%);
     z-index: 2;
     pointer-events: none;
-    transform: rotate(2deg);
-
-    
+    transform: rotate(2deg);    
 }
 
 .attr-box { 
@@ -518,6 +529,7 @@ body.vigilante {
     flex-direction: column;
     gap: 35px; 
     width: 100%;
+    padding-left: 18px;
 }
 
 .hab-titulo-fundo {
@@ -587,6 +599,17 @@ body.vigilante {
     pointer-events: none;
 }
 
+.linha-topo-decorativa-2 {
+    position: absolute;
+    top: 141.5%;
+    left: 6%;
+    right: 4%;
+    height: 2.5px;
+    background: linear-gradient(to right, transparent, var(--main-color) 10%, var(--main-color) 80%, transparent);
+    z-index: 4;
+    pointer-events: none;
+}
+
 .dado-shape {
     cursor: pointer;
     transition: filter 0.2s ease, transform 0.2s ease; 
@@ -638,7 +661,7 @@ body.vigilante {
     font-family: inherit;
     font-weight: bold;
     border-radius: 3px;
-    padding: 2px 10px;
+    padding: 5px 14px;
     padding-top: 6px;
     transition: filter 0.2s ease, transform 0.2s ease;
 }
@@ -812,4 +835,92 @@ select.caixa-nivel option {
     color: #fff;
     text-align: left;
     padding-left: 4px;
+}
+
+/* --- MODAL INFORMAÇÃO DE PERÍCIAS --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background-color: #121214;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    width: 420px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: var(--font-body, sans-serif);
+    color: #fff;
+    transform: translateY(20px) scale(0.95); 
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.modal-overlay.ativo .modal-container {
+    transform: translateY(0) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 28px;
+    border-bottom: 1px solid #27272a;
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    font-family: var(--font-title, sans-serif);
+    font-size: 22px;
+    color: #f4f4f5;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.modal-fechar {
+    background: none;
+    border: none;
+    color: #a1a1aa;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-fechar:hover {
+    color: #fff;
+}
+
+.modal-body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.modal-body p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d4d4d8;
+    margin: 0;
 }

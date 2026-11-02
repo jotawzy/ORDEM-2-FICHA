@@ -167,7 +167,7 @@ body:has(.modal-overlay.ativo) {
     word-break: break-word;
 }
 
-/* --- ESTILOS DE TEXTO E REMOÇÃO RIGOROSA DE ESPAÇOS/RECUOS --- */
+/* --- ESTILOS DE TEXTO --- */
 
 .hab-texto {
     font-size: 1.05rem;
