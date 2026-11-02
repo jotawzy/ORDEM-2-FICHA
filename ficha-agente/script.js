@@ -193,7 +193,7 @@ const descricoesPericias = {
     "INSPECIONAR": "Pesquisar documentos e bancos de dados, analisar evidências. <em>Mente</em>",
     "LUTA": "Atacar desarmado ou com armas corpo a corpo. <em>Físico</em>",
     "MEDICINA": "Primeiros socorros, tratamentos. <em>Mente</em>",
-    "OFICIO": "Fabricar e consertar itens. <em>Mente</em>",
+    "OFÍCIO": "Fabricar e consertar itens. <em>Mente</em>",
     "OCULTISMO": "Conhecimento sobre o paranormal. <em>Mente</em>",
     "PERCEPÇÃO": "Notar coisas através de visão, audição e olfato, revistar lugares. <em>Mente</em>",
     "PERSUASÃO": "Convencer pessoas com argumentos e lábia. <em>Emoção</em>",

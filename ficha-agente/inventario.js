@@ -211,3 +211,44 @@ function renderizarInventario() {
     listaInventario.appendChild(colunaEsquerda);
     listaInventario.appendChild(colunaDireita);
 }
+
+function abrirModalEdicao(index) {
+    const item = inventarioItens[index];
+
+    if (!item) return;
+
+    editandoIndex = index;
+    fotoItemAtual = item.foto || "";
+
+    document.getElementById('input-item-nome').value = item.nome || '';
+    document.getElementById('input-item-categoria').value = item.categoria ?? '0';
+    document.getElementById('input-item-espacos').value = item.espacos ?? '1';
+    document.getElementById('input-item-sub').value = item.subtitulo || '';
+    document.getElementById('input-item-desc').value = item.descricao || '';
+
+    const previewContainer = document.getElementById('preview-foto-item-container');
+
+    if (previewContainer) {
+        if (fotoItemAtual) {
+            previewContainer.innerHTML = `
+                <img src="${fotoItemAtual}" style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                ">
+            `;
+        } else {
+            previewContainer.innerHTML = `
+                <span style="font-size: 11px; color: #71717a;">
+                    Sem foto
+                </span>
+            `;
+        }
+    }
+
+    const modal = document.getElementById('modal-add-item');
+
+    if (modal) {
+        modal.classList.add('ativo');
+    }
+}

@@ -381,23 +381,23 @@
     </div>
 
     <!-- Seção do Inventário -->
-<div class="inventario-wrapper">
-    <div class="inventario-header-wrapper">
-        <div class="inventario-header-left">
-            <div class="tag-fundo tag-inventario">INVENTÁRIO</div>
-            <div class="linha-inventario-tag"></div>
-        </div>
-        <div class="inventario-contador">
-            <span id="peso-atual" class="span-peso-atual">0</span> / <input type="number" id="peso-maximo" value="20" class="input-peso-max">
-            <button id="btn-abrir-modal-item" class="btn-add-item">+</button>
-        </div>
-    </div>
+        <div class="inventario-wrapper">
+            <div class="inventario-header-wrapper">
+                <div class="inventario-header-left">
+                    <div class="tag-fundo tag-inventario">INVENTÁRIO</div>
+                    <div class="linha-inventario-tag"></div>
+                </div>
+                <div class="inventario-contador">
+                    <span id="peso-atual" class="span-peso-atual">0</span> / <input type="number" id="peso-maximo" value="20" class="input-peso-max">
+                    <button id="btn-abrir-modal-item" class="btn-add-item">+</button>
+                </div>
+            </div>
 
-    <!-- Lista onde os itens serão injetados via JavaScript -->
-    <div id="lista-inventario" class="inventario-lista-container">
-        <!-- Os itens aparecem aqui dinamicamente -->
-    </div>
-</div>
+            <!-- Lista onde os itens serão injetados via JavaScript -->
+            <div id="lista-inventario" class="inventario-lista-container">
+                <!-- Os itens aparecem aqui dinamicamente -->
+            </div>
+        </div>
 
 <!-- Modal para Adicionar Novo Item -->
 <div id="modal-add-item" class="modal-overlay">
@@ -480,6 +480,9 @@
         <button type="button" class="nav-abas-item atual" data-aba-alvo="principal">PRINCIPAL</button>
         <button type="button" class="nav-abas-item" data-aba-alvo="pericias">PERÍCIAS</button>
         <button type="button" class="nav-abas-item" data-aba-alvo="habilidades">HABILIDADES</button>
+        <button type="button" class="nav-abas-item" data-aba-alvo="inventario">INVENTÁRIO</button>
+        <button type="button" class="nav-abas-item" data-aba-alvo="rituais">RITUAIS</button>
+        <button type="button" class="nav-abas-item" data-aba-alvo="social">SOCIAL</button>
     </div>
     <button id="nav-abas-toggle" class="nav-abas-toggle" type="button" aria-label="Trocar aba" aria-expanded="false">
         <span class="nav-abas-icone"></span>
