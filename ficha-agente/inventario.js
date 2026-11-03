@@ -45,7 +45,7 @@ function atualizarPreview() {
         `;
     } else {
         preview.innerHTML = `
-            <span style="font-size:11px;color:#71717a;">Sem foto ou ícone</span>
+            <span style="font-size:11px;color:#71717a;">Sem foto</span>
         `;
     }
 }
@@ -449,7 +449,6 @@ function iniciarInventario() {
     const btnAbrirCorte = document.getElementById("btn-abrir-corte-foto-item");
     const previewContainer = document.getElementById("preview-foto-item-container");
 
-    adicionarEstilosBiblioteca();
     criarModalBiblioteca();
 
     if (btnAbrirCorte) {
