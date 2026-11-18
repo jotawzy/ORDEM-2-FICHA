@@ -141,11 +141,6 @@ input::-webkit-inner-spin-button {
     transition: filter 0.2s, transform 0.2s;
 }
 
-#btn-salvar-item:hover {
-    background: var(--light-color);
-    transform: scale(1.008);
-}
-
 /* =========================================================
    CONTAINER E ESTRUTURA DE 2 COLUNAS INDEPENDENTES
    ========================================================= */
@@ -327,8 +322,7 @@ input::-webkit-inner-spin-button {
 }
 
 #btn-biblioteca-icones:hover {
-    background: var(--light-color);
-    transform: scale(1.008);
+    filter: brightness(1.3);
 }
 
 #modal-biblioteca-icones {
@@ -353,6 +347,8 @@ input::-webkit-inner-spin-button {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    background: #161616;
+    border: 1px solid #353535;
     border-radius: 8px;
     color: #fff;
     font-family: var(--font-body, sans-serif);

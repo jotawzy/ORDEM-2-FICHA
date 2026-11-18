@@ -1,10 +1,10 @@
+
 import { db, doc, getDoc, updateDoc } from "../firebase-config.js";
 import { GerenciadorFotoInventario } from "../foto/foto-inventario.js";
 
 const REPO_API = "https://api.github.com/repos/jotawzy/ORDEM-2-FICHA/contents/";
 const REPO_RAW = "https://raw.githubusercontent.com/jotawzy/ORDEM-2-FICHA/main/";
 const PASTA_ICONES = "assets/icones-inventario";
-const PASSOS_DADOS = [4, 6, 8, 10, 12, 20];
 
 let inventarioItens = [];
 let editandoIndex = null;
@@ -14,73 +14,6 @@ let gerenciadorFotoItem = null;
 let fichaRef = null;
 let caminhoBibliotecaAtual = PASTA_ICONES;
 let cacheBiblioteca = new Map();
-
-window.ignorandoObserverFisico = false;
-
-window.atualizarLimiteESobrecarga = function() {
-    const elDadoFisico = document.querySelector(".attr-fisico .attr-dado");
-    const pesoAtualSpan = document.getElementById("peso-atual");
-    const pesoMaxInput = document.getElementById("peso-maximo");
-
-    if (!elDadoFisico) return;
-
-    // Impede que o limite seja alterado manualmente pelo próprio inventário
-    if (pesoMaxInput) {
-        pesoMaxInput.readOnly = true;
-    }
-
-    // 1. Lê o Físico Base (valor real, antes de qualquer penalidade)
-    const valorNaTela = Number(elDadoFisico.textContent.trim());
-    let fisicoBase = Number(elDadoFisico.getAttribute("data-base"));
-
-    if (!PASSOS_DADOS.includes(fisicoBase)) {
-        if (PASSOS_DADOS.includes(valorNaTela)) {
-            fisicoBase = valorNaTela;
-            elDadoFisico.setAttribute("data-base", fisicoBase);
-        } else {
-            return;
-        }
-    }
-
-    // 2. Soma os espaços ocupados no inventário
-    const totalEspacos = inventarioItens.reduce(
-        (acc, item) => acc + Number(item.espacos || 0), 0
-    );
-
-    // O limite máximo do inventário SEMPRE reflete o fisicoBase
-    if (pesoAtualSpan) pesoAtualSpan.textContent = totalEspacos;
-    if (pesoMaxInput) pesoMaxInput.value = fisicoBase;
-
-    // 3. Calcula o Físico Efetivo (desce 1 passo se ultrapassar o limite)
-    let fisicoEfetivo = fisicoBase;
-    const estaSobrecarregado = totalEspacos > fisicoBase;
-
-    if (estaSobrecarregado) {
-        const indexAtual = PASSOS_DADOS.indexOf(fisicoBase);
-        if (indexAtual > 0) {
-            fisicoEfetivo = PASSOS_DADOS[indexAtual - 1];
-        }
-    }
-
-    // 4. Só altera o dado na tela se o valor realmente precisar mudar
-    if (valorNaTela !== fisicoEfetivo) {
-        window.ignorandoObserverFisico = true;
-
-        elDadoFisico.className = Array.from(elDadoFisico.classList)
-            .filter(c => !/^d\d+$/.test(c))
-            .join(" ");
-        elDadoFisico.classList.add(`d${fisicoEfetivo}`);
-        elDadoFisico.textContent = fisicoEfetivo;
-
-        requestAnimationFrame(() => {
-            window.ignorandoObserverFisico = false;
-        });
-    }
-
-    // Atualiza o visual de alerta
-    elDadoFisico.classList.toggle("sobrecarregado", estaSobrecarregado);
-    if (pesoAtualSpan) pesoAtualSpan.classList.toggle("sobrecarregado", estaSobrecarregado);
-};
 
 function escaparHTML(valor) {
     return String(valor ?? "").replace(/[&<>"']/g, caractere => ({
@@ -516,7 +449,6 @@ function iniciarInventario() {
     const btnAbrirCorte = document.getElementById("btn-abrir-corte-foto-item");
     const previewContainer = document.getElementById("preview-foto-item-container");
 
-    adicionarEstilosBiblioteca();
     criarModalBiblioteca();
 
     if (btnAbrirCorte) {
@@ -549,8 +481,6 @@ function iniciarInventario() {
             gerenciadorFotoItem.abrirModalParaEscolha(fotoItemAtual);
         });
     }
-
-    window.atualizarLimiteESobrecarga();
 
     const fichaId = localStorage.getItem("fichaIdAtiva");
 
@@ -663,11 +593,17 @@ async function salvarInventarioNoFirestore() {
 
 function renderizarInventario() {
     const listaInventario = document.getElementById("lista-inventario");
+    const pesoAtualSpan = document.getElementById("peso-atual");
+
     if (!listaInventario) return;
 
     listaInventario.innerHTML = "";
 
-    window.atualizarLimiteESobrecarga();
+    const totalEspacos = inventarioItens.reduce(
+        (acc, item) => acc + Number(item.espacos || 0), 0
+    );
+
+    if (pesoAtualSpan) pesoAtualSpan.textContent = totalEspacos;
 
     if (inventarioItens.length === 0) {
         listaInventario.innerHTML = `<div>Nenhum item no inventário.</div>`;
