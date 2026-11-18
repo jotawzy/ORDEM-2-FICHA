@@ -106,7 +106,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const observerAtributos = new MutationObserver((mutations) => {
         mutations.forEach(mutation => {
             const target = mutation.target;
-            if (target.closest('.attr-fisico')) {
+            const elFisico = target.closest('.attr-fisico') 
+                ? document.querySelector('.attr-fisico .attr-dado') 
+                : null;
+
+            if (elFisico) {
+                // Se a mudança veio da sobrecarga temporária, NÃO mexe no data-base nem no limite máximo
+                if (!window.ignorandoObserverFisico) {
+                    const novoBase = Number(elFisico.textContent.trim());
+                    if ([4, 6, 8, 10, 12, 20].includes(novoBase)) {
+                        elFisico.setAttribute('data-base', novoBase);
+                        if (typeof window.atualizarLimiteESobrecarga === 'function') {
+                            window.atualizarLimiteESobrecarga();
+                        }
+                    }
+                }
+                // As perícias sempre acompanham o dado visível (com ou sem penalidade)
                 atualizarPericiasDoAtributo('fisico');
             } else if (target.closest('.attr-mente')) {
                 atualizarPericiasDoAtributo('mente');
@@ -188,7 +203,7 @@ const descricoesPericias = {
     "DISCIPLINA": "Estudar, meditar, resistir a traumas e sustos. <em>Emoção</em>",
     "ENGANAÇÃO": "Mentir, disfarçar-se, seduzir. <em>Emoção</em>",
     "FURTIVIDADE": "Esconder-se, andar sem ser visto ou ouvido. <em>Físico</em>",
-    "INTIMIDAR": "Assustar pessoas, coagi-las a fazerem o que você quer. <em>Emoção</em>",
+    "INTIMIDAR": "Assustar pessoas, coagi-las fazerem o que você quer. <em>Emoção</em>",
     "INTUIÇÃO": "\"Sexto sentido\" para analisar pessoas e ambientes. <em>Emoção</em>",
     "INSPECIONAR": "Pesquisar documentos e bancos de dados, analisar evidências. <em>Mente</em>",
     "LUTA": "Atacar desarmado ou com armas corpo a corpo. <em>Físico</em>",
@@ -216,7 +231,6 @@ document.querySelectorAll('.peri-linha').forEach(linha => {
             if (e.target.tagName === 'SELECT' || e.target.tagName === 'OPTION') return;
 
             let nomePericia = spanNome.textContent.replace(':', '').trim().toUpperCase();
-            // Remove quebras de linha caso venham do HTML estruturado
             nomePericia = nomePericia.split('\n')[0].trim();
 
             if (modalTitulo) modalTitulo.textContent = nomePericia;
